@@ -1,0 +1,12 @@
+name : Deploy React App On Vercel Using Github Actions
+on : 
+  push : 
+    branch : master
+
+
+jobs : 
+  test : 
+    runs-on : ubuntu-latest
+    steps:
+      - name : test
+        run : echo "Hello Github Action"
