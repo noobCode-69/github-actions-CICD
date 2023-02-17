@@ -22,13 +22,20 @@ jobs :
         run : npm ci
       - name : Build the project
         run : npm run build
-      - name : Listing the director
-        run : tree
+      - name : Uploading the build folder as artifact
+        uses : actions/upload-artifact@v3
+        with : 
+          name : build-folder
+          path : ./build
   deploy : 
     needs : build
     runs-on: ubuntu-latest
     steps:  
       - name : Deploy the project
         run : echo "Deployment initialized"
-      - name : Listing the director
+      - name : Dowload the build folder as artifact
+        uses : actions/download-artifact@v3
+        with : 
+          name : build-folder
+      - name : Listing the directory
         run : tree
