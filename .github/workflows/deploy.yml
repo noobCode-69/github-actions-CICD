@@ -8,5 +8,21 @@ jobs :
   test : 
     runs-on : ubuntu-latest
     steps:
-      - name : test
-        run : echo "Hello Github Action"
+      - name : Get the source code
+        uses : actions/checkout@v3
+      - name : Run the tests
+        run : npm run test
+  build : 
+    needs : test
+    runs-on : ubuntu-latest
+    steps : 
+      - name : Get the source code
+        uses : actions/checkout@v3
+      - name : Build the project
+        run : npm run build
+  deploy : 
+    needs : build
+    runs-on: ubuntu-latest
+    steps:  
+      - name : Deploy the project
+        run : echo "Deployment initialized"
