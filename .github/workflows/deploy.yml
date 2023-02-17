@@ -22,6 +22,8 @@ jobs :
         run : npm ci
       - name : Build the project
         run : npm run build
+      - name : Listing the director
+        run : tree
   deploy : 
     needs : build
     runs-on: ubuntu-latest
